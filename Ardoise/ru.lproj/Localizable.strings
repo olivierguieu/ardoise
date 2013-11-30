@@ -1,0 +1,63 @@
+/* 
+  Localizable.strings
+  Ardoise
+
+  Created by Olivier Guieu on 02/02/12.
+  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+*/
+
+/* Couleurs */
+
+"Black"         =   "черный";
+"Dark Grey"     =   "Темно-серый";
+"Light Grey"    =   "Светло-серый"; 
+"Grey"          =   "Серый";
+"White"         =   "белый"; 
+"Red"           =   "рыжий" ;
+"Green"         =   "зеленый"; 
+"Blue"          =   "синий" ;
+"Cyan"          =   "Голубой"  ;
+"Yellow"        =   "желтый";
+"Magenta"       =   "пурпурный";
+"Orange"        =   "оранжевый"  ;
+"Purple"        =   "фиолетовый" ;
+"Brown"         =   "коричневый"  ;
+"Skyblue"       =   "лазурь";
+"Lawngreen"     =   "Газон зеленые";
+"Chocolate"     =   "шоколадный" ; 
+
+"Colors !"      = "Цвета !";
+"Look at this picture!" = "Посмотрите на эту фотографию!";
+"Hello!"        = "привет!";
+
+"Confirm deletion ?"= "Подтвердите удаление? ";
+
+"OK"            = "Da";
+"Cancel"        = "отменять" ;
+
+
+"New Image..."  =   "Новые изображения..." ;
+"Settings"      =   "настройки";
+"Last Images"   =   "Последние изображения";
+"Favorites"     =   "Избранные";
+
+"Share..." = "распределять...";
+"Sorry" = "извините";
+"Tweet it" = "Tweet it";
+"Mail it" = "Mail it";
+"on Facebook"="Facebook";
+
+"Action Cancelled"="Действие отменено";
+"cancelled"="отменили";
+"Post Successful"="Post успешный";
+
+"You can't send a tweet right now, make sure your device has an internet connection and you have at least one Twitter account setup" = "Вы не можете отправить твит прямо сейчас, убедитесь, что ваше устройство имеет подключение к Интернету и у вас есть по крайней мере одна настройки учетной записи Twitter";
+
+
+// todo list
+"Save to Camera Roll" = "Сохранить в Camera Roll";
+"Image could not be saved.Please try again" = "Изображение не может быть saved.Please попробуйте еще раз";
+"Image was successfully saved in photoalbum" = "Изображение было успешно сохранено в фотоальбом";
+"Success"="Успех";
+
+

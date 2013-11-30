@@ -1,0 +1,58 @@
+/* 
+  Localizable.strings
+  Ardoise
+
+  Created by Olivier Guieu on 02/02/12.
+  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+*/
+
+
+"Black"         =   "Noir";
+"Dark Grey"     =   "Gris Fonçé";
+"Light Grey"    =   "Gris Clair"; 
+"Grey"          =   "Gris";
+"White"         =   "Blanc"; 
+"Red"           =   "Rouge" ;
+"Green"         =   "Vert"; 
+"Blue"          =   "Bleu" ;
+"Cyan"          =   "Cyan"  ;
+"Yellow"        =   "Jaune";
+"Magenta"       =   "Magenta";
+"Orange"        =   "Orange"  ;
+"Purple"        =   "Violet" ;
+"Brown"         =   "Marron"  ;
+"Skyblue"       =   "Gris clair";
+"Lawngreen"     =   "Pelouse";
+"Chocolate"     =   "Chocolat" ; 
+
+"Colors !"      = "Couleurs !";
+"Look at this picture!" = "Regardez mon dessin !";
+"Hello!"        = "Bonjour !";
+"Confirm deletion ?"= "D'accord pour supprimer ? ";
+
+"OK"            = "Oui";
+"Cancel"        = "Non" ; 
+
+"New Image..."  =   "Nouvelle Image..." ;
+"Settings"      =   "Options" ;
+"Last Images"   =   "Dernières Images";
+"Favorites"     =   "Favorites";
+
+
+"Share..." = "Partager...";
+"Sorry" = "Désolé";
+"Tweet it" = "ou via un Tweet";
+"Mail it" = "par Mail";
+"on Facebook"="sur Facebook";
+
+"Action Cancelled"="Action annulée";
+"cancelled"="annulé";
+"Post Successful"="Post émis avec succès";
+
+"You can't send a tweet right now, make sure your device has an internet connection and you have at least one Twitter account setup" = "You can't send a tweet right now, make sure your device has an internet connection and you have at least one Twitter account setup";
+
+// todo list
+"Save to Camera Roll" = "Sauvegarder dans l'album photo";
+"Image could not be saved.Please try again" = "L'image n'a pu être sauvegardée. Merci d'essayer à nouveau";
+"Image was successfully saved in photoalbum" = "L'image a pu être sauvegardée dans l'album photo";
+"Success"="Succès";

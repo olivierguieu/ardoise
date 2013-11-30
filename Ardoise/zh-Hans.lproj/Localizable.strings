@@ -1,0 +1,63 @@
+/* 
+  Localizable.strings
+  Ardoise
+
+  Created by Olivier Guieu on 02/02/12.
+  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+*/
+
+/* Couleurs */
+"Black"         =   "黑";
+"Dark Grey"     =   "暗灰";
+"Light Grey"    =   "浅灰色”";
+"Grey"          =   "灰";
+"White"         =   "白色";
+"Red"           =   "红楼梦" ;
+"Green"         =   "绿色";
+"Blue"          =   "蓝" ;
+"Cyan"          =   "青色"  ;
+"Yellow"        =   "黄色";
+"Magenta"       =   "品红";
+"Orange"        =   "橙色"  ;
+"Purple"        =   "紫色" ;
+"Brown"         =   "布朗"  ;
+"Skyblue"       =   "天蓝";
+"Lawngreen"     =   "草绿";
+"Chocolate"     =   "巧克力" ;
+
+
+"Colors !"      = "颜色！";
+"Look at this picture!" = "看看这张照片！";
+"Hello!"        = "您好！";
+
+"Confirm deletion ?"= "确认删除吗？";
+"Cancel"        = "取消" ;
+
+
+"New Image..."  =   "新的图像..." ;
+"Settings"      =   "设置";
+"Last Images"   =   "最新图片";
+"Favorites"     =   "收藏";
+
+"Share..." = "分享...";
+"Sorry" = "遗憾";
+"Tweet it" = "Tweet it";
+"Mail it" = "信邮寄";
+"on Facebook"="在Facebook上";
+
+
+"Action Cancelled"="操作已取消";
+"cancelled"="取消";
+"Post Successful"="发表成功";
+
+
+"You can't send a tweet right now, make sure your device has an internet connection and you have at least one Twitter account setup" = "您不能发送的tweet，请确保您的设备连接到互联网，你至少有一个Twitter帐户设置";
+
+
+
+// todo list
+"Save to Camera Roll" = "保存到相机胶卷";
+"Image could not be saved.Please try again" = "图片不能saved.Please再试一次";
+"Image was successfully saved in photoalbum" = "成功地保存在画册图片";
+"Success"="成功";
+

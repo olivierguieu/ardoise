@@ -1,0 +1,63 @@
+/* 
+  Localizable.strings
+  Ardoise
+
+  Created by Olivier Guieu on 02/02/12.
+  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+*/
+
+/* Couleurs */
+
+"Black"         =   "Black";
+"Dark Grey"     =   "Dark Grey";
+"Light Grey"    =   "Light Grey"; 
+"Grey"          =   "Grey";
+"White"         =   "White"; 
+"Red"           =   "Red" ;
+"Green"         =   "Green"; 
+"Blue"          =   "Blue" ;
+"Cyan"          =   "Cyan"  ;
+"Yellow"        =   "Yellow";
+"Magenta"       =   "Magenta";
+"Orange"        =   "Orange"  ;
+"Purple"        =   "Purple" ;
+"Brown"         =   "Brown"  ;
+"Skyblue"       =   "Skyblue";
+"Lawngreen"     =   "Lawngreen";
+"Chocolate"     =   "Chocolate" ; 
+
+"Colors !"      = "Colors !";
+"Look at this picture!" = "Look at this picture!";
+"Hello!"        = "Hello!";
+
+"Confirm deletion ?"= "Confirm deletion ? ";
+"Cancel"        = "Cancel" ;
+
+
+"New Image..."  =   "New Image..." ;
+"Settings"      =   "Settings";
+"Last Images"   =   "Last Images";
+"Favorites"     =   "Favorites";
+
+"Share..." = "Share...";
+"Sorry" = "Sorry";
+"Tweet it" = "Tweet it";
+"Mail it" = "Mail it";
+"on Facebook"="on Facebook";
+
+
+"Action Cancelled"="Action Cancelled";
+"cancelled"="cancelled";
+"Post Successful"="Post Successful";
+
+
+
+"You can't send a tweet right now, make sure your device has an internet connection and you have at least one Twitter account setup" = "You can't send a tweet right now, make sure your device has an internet connection and you have at least one Twitter account setup";
+
+// todo list
+"Save to Camera Roll" = "Save to Camera Roll";
+"Image could not be saved.Please try again" = "Image could not be saved.Please try again";
+"Image was successfully saved in photoalbum" = "Image was successfully saved in photoalbum";
+"Success"="Success";
+
+

@@ -1,0 +1,63 @@
+/* 
+  Localizable.strings
+  Ardoise
+
+  Created by Olivier Guieu on 02/02/12.
+  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+*/
+
+/* Couleurs */
+
+"Black"         =   "Preto";
+"Dark Grey"     =   "Cinza Escuro";
+"Light Grey"    =   "Light Grey"; 
+"Grey"          =   "Cinza";
+"White"         =   "Branco"; 
+"Red"           =   "Vermelho" ;
+"Green"         =   "Verde"; 
+"Blue"          =   "Azul" ;
+"Cyan"          =   "Ciano"  ;
+"Yellow"        =   "Amarelo";
+"Magenta"       =   "Magenta";
+"Orange"        =   "Alaranjado"  ;
+"Purple"        =   "Roxo" ;
+"Brown"         =   "Marrom"  ;
+"Skyblue"       =   "Azul-celeste";
+"Lawngreen"     =   "Gramado Verde";
+"Chocolate"     =   "Marrom-escuro" ; 
+
+"Colors !"      = "Cores !";
+"Look at this picture!" = "Olhe para essa foto!";
+"Hello!"        = "Olá!";
+
+"Confirm deletion ?"= "Confirmar a exclusão ? ";
+
+"OK"            = "OK";
+"Cancel"        = "Cancelar" ;
+
+
+"New Image..."  =   "Nova Imagem..." ;
+"Settings"      =   "Ajustes";
+"Last Images"   =   "Imagens últimos";
+"Favorites"     =   "Favoritos";
+
+"Share..." = "Compartilhar...";
+"Sorry" = "Desculpe";
+"Tweet it" = "Tweet it";
+"Mail it" = "Mail it";
+"on Facebook"="Facebook";
+
+"Action Cancelled"="Ação cancelada";
+"cancelled"="cancelada";
+"Post Successful"="Post sucedido";
+
+"You can't send a tweet right now, make sure your device has an internet connection and you have at least one Twitter account setup" = "Você não pode enviar um tweet agora, verificar se o dispositivo tem uma conexão de internet e você tem pelo menos uma configuração de conta no Twitter";
+
+
+
+// todo list
+"Save to Camera Roll" = "Salvar no Camera Roll";
+"Image could not be saved.Please try again" = "Imagem não pode ser saved.Please tente novamente";
+"Image was successfully saved in photoalbum" = "A imagem foi salva com sucesso no álbum de fotos";
+"Success"="Sucesso";
+
