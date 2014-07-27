@@ -10,7 +10,7 @@
 
 #import "ArdoiseViewController.h"
 #import "Helpers.h"
-#import "FlurryAnalytics.h"
+#import "Flurry.h"
 
 
 @implementation MCOAppDelegate
@@ -28,7 +28,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [FlurryAnalytics startSession:@"F7L39NH7A4JHJG7ER7UF"];
+    [Flurry startSession:@"F7L39NH7A4JHJG7ER7UF"];
   
     // cf http://www.btjones.com/2010/05/nsuserdefaults-nil-setting-problem/
     // The problem is if your application settings are never opened in the Settings app, when using NSUserDefaults to retrieve setting values within your application, they will be nil even if a DefaultValue is set in your settings bundle.

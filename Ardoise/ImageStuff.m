@@ -53,7 +53,7 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         if ([defaults stringForKey:@"BackgroundColor"] == nil)
         {
-            self.backgroundColor = @"blackColor" ;
+            self.backgroundColor = @"black" ;
         }
         else 
         {

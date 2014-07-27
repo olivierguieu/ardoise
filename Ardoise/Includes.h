@@ -10,13 +10,13 @@
 #define Ardoise_Includes_h
 
 #import "FileOperations.h"
-#import "ArdoiseView.h"
+//#import "ArdoiseView.h"
 #import "ArdoiseViewController.h"
 #import "FileOperations.h"
 #import "RecentImagesController.h"
 #import "ImageStuff.h"
 #import "UIView+FixedApi.h"
-#import "PresetColorPicker.h"
+#import "PresetColorPickerController.h"
 #import "ArrayOfLines.h"
 #import "Helpers.h"
 

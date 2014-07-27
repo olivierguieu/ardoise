@@ -99,7 +99,7 @@
     path = [[paths objectAtIndex:0] stringByAppendingPathComponent:directory];
     path = [path stringByAppendingPathComponent:fileName];
     
-    NSData *file1;
+    NSData *file1 = nil;
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:path])
     {

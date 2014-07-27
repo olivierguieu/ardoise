@@ -26,9 +26,7 @@
 			<key>AutoCorrectionType</key>
 			<string>NO</string>
 		</dict>
-
-		
-        <dict>
+		<dict>
 			<key>Title</key>
 			<string>OPACITY</string>
 			<key>Type</key>
@@ -50,10 +48,7 @@
 			<key>AutoCorrectionType</key>
 			<string>NO</string>
 		</dict>
-
-        
-        
-        <dict>
+		<dict>
 			<key>Title</key>
 			<string></string>
 			<key>Type</key>
@@ -67,24 +62,24 @@
 			<key>Key</key>
 			<string>BackgroundColor</string>
 			<key>DefaultValue</key>
-			<string>blackColor</string>
+			<string>black</string>
 			<key>Values</key>
 			<array>
-				<string>blackColor</string>
-				<string>darkGrayColor</string>
-				<string>lightGrayColor</string>
-				<string>grayColor</string>
-				<string>whiteColor</string>
-				<string>redColor</string>
-				<string>greenColor</string>
-				<string>blueColor</string>
-				<string>cyanColor</string>
-				<string>yellowColor</string>
-				<string>magentaColor</string>
-				<string>orangeColor</string>
-				<string>purpleColor</string>
-				<string>brownColor</string>
-				<string>clearColor</string>
+				<string>black</string>
+				<string>darkGray</string>
+				<string>lightGray</string>
+				<string>gray</string>
+				<string>white</string>
+				<string>red</string>
+				<string>green</string>
+				<string>blue</string>
+				<string>cyan</string>
+				<string>yellow</string>
+				<string>magenta</string>
+				<string>orange</string>
+				<string>purple</string>
+				<string>brown</string>
+				<string>clear</string>
 			</array>
 			<key>Titles</key>
 			<array>
@@ -122,38 +117,6 @@
 			<false/>
 		</dict>
 		<dict>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>Title</key>
-			<string>LARGE_CHOICE_OF_COLORS</string>
-			<key>Key</key>
-			<string>LARGE_CHOICE_OF_COLORS</string>
-			<key>DefaultValue</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>Title</key>
-			<string>RUBBER_SIZE</string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-		</dict>
-		<dict>
-			<key>Key</key>
-			<string>RUBBER_SIZE</string>
-			<key>Type</key>
-			<string>PSSliderSpecifier</string>
-			<key>KeyboardType</key>
-			<string>NumberPad</string>
-			<key>MinimumValue</key>
-			<string>1</string>
-			<key>MaximumValue</key>
-			<string>9</string>
-			<key>DefaultValue</key>
-			<string>3</string>
-			<key>AutoCorrectionType</key>
-			<string>NO</string>
-		</dict>
-		<dict>
 			<key>Title</key>
 			<string></string>
 			<key>Type</key>
@@ -186,18 +149,6 @@
 			<string>IASKMailComposeSpecifier</string>
 		</dict>
 		<dict>
-			<key>File</key>
-			<string>settings_about.html</string>
-			<key>IASKViewControllerClass</key>
-			<string>IASKAppSettingsWebViewController</string>
-			<key>IASKViewControllerSelector</key>
-			<string>initWithFile:key:</string>
-			<key>Title</key>
-			<string>ABOUT</string>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-		</dict>
-		<dict>
 			<key>Title</key>
 			<string>APPLICATION_INFO_TITLE</string>
 			<key>Type</key>
@@ -205,7 +156,7 @@
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
-			<string>1.6</string>
+			<string>1.8</string>
 			<key>Key</key>
 			<string>version</string>
 			<key>Title</key>

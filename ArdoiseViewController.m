@@ -10,7 +10,7 @@
 #import "Includes.h"
 #import "IASKAppSettingsViewController.h"
 #import <Twitter/Twitter.h>
-//#import <UIColor.h>
+
 
 #define SHARE_ALERTVIEW_TAG             8
 
@@ -18,7 +18,8 @@
 @implementation ArdoiseViewController
 
 @synthesize ardoiseToolbar;
-@synthesize rubberButton, colorButton, shareButton, favoritesButton, undoButton;
+@synthesize rubberButton, rubberBarButton, shareButton, favoritesButton, undoButton;
+
 
 @synthesize colorPicker, colorPickerPopover;
 @synthesize recentImages, recentImagesPopover;
@@ -31,6 +32,8 @@
 @synthesize isRubberMode, isDirty;
 @synthesize multiTouchEnabled;
 @synthesize strokeSize, rubberSize, opacity;
+@synthesize longRecognizer;
+
 
 @synthesize arrayOfLines;
 @synthesize imageStuff;
@@ -43,7 +46,7 @@
     [ardoiseToolbar release];
     
     [rubberButton release];
-    [colorButton release];
+   // [colorButton release];
     [shareButton release];
     [favoritesButton release];
     [undoButton release];
@@ -64,6 +67,7 @@
     [imageStuff release];
     
     [undoArrayOfImages release];
+    [longRecognizer release];
     
     [super dealloc];
 }
@@ -106,12 +110,13 @@
     
     selectedOption= [defaults objectForKey:@"CHALK_SIZE"];
     self.strokeSize = [selectedOption floatValue];
-    
+
+    //selectedOption = [defaults objectForKey:@"RUBBER_SIZE"];
+    self.rubberSize = 2 ;
+
     selectedOption= [defaults objectForKey:@"OPACITY"];
     self.opacity = [selectedOption floatValue];
     
-    selectedOption = [defaults objectForKey:@"RUBBER_SIZE"];
-    self.rubberSize = [selectedOption floatValue];
     
     self.multiTouchEnabled = [defaults boolForKey:@"MULTI_TOUCH_ENABLED"];
 }
@@ -120,17 +125,7 @@
 {
     [super viewDidLoad];
     
-    // Do any additional setup after loading the view from its nib.
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-    {
-        self.colorButton.title = NSLocalizedString(@"Colors !",nil);  
-    }
-    else 
-    {
-        self.colorButton.title = NSLocalizedString(@" ",nil);  
-    }
-    
-    [self colorSelected:[UIColor whiteColor]];
+    [self colorNameSelected:@"White"];
     
     self.isDirty = FALSE;    
     self.imageStuff = [[ImageStuff alloc] init];
@@ -139,10 +134,18 @@
     self.undoArrayOfImages = [[NSMutableArray alloc] initWithCapacity:10];
     self.undoButton.enabled = [self canUndo];
     
+    self.longRecognizer= [[ UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longTapOnPenButtonDetected:)];
+    [self.rubberButton addGestureRecognizer:self.longRecognizer];
+    self.longRecognizer.delegate = self;
+
     [self applyDefaultBackground];
     
     [self setUpArdoiseView];
 }
+
+
+
+
 
 - (void)viewDidUnload
 {
@@ -162,18 +165,6 @@
     return YES;
 }
 
--(NSInteger)supportedInterfaceOrientations{
-    NSInteger mask = 0;
-    if ([self shouldAutorotateToInterfaceOrientation: UIInterfaceOrientationLandscapeLeft])
-        mask |= UIInterfaceOrientationMaskLandscapeLeft;
-    if ([self shouldAutorotateToInterfaceOrientation: UIInterfaceOrientationLandscapeRight])
-        mask |= UIInterfaceOrientationMaskLandscapeRight;
-    if ([self shouldAutorotateToInterfaceOrientation: UIInterfaceOrientationPortrait])
-        mask |= UIInterfaceOrientationMaskPortrait;
-    if ([self shouldAutorotateToInterfaceOrientation: UIInterfaceOrientationPortraitUpsideDown])
-        mask |= UIInterfaceOrientationMaskPortraitUpsideDown;
-    return mask;
-}
 
 
 
@@ -224,7 +215,7 @@
     
     if ( option  == nil)
     {
-        [self applyBackGroundColor:@"blackColor"];
+        [self applyBackGroundColor:@"black"];
     }
     else
     {
@@ -233,19 +224,11 @@
     return option;
 }
 
-- ( UIColor * ) getUIColorFromString : (NSString *) nameOfColor
-{
-    SEL blackSel = NSSelectorFromString(nameOfColor);
-    UIColor* tColor = nil;
-    if ([UIColor respondsToSelector: blackSel])
-        tColor  = [UIColor performSelector:blackSel];
-    return tColor;
-}
 
 - (void) applyBackGroundColor: (NSString*) backgroundColor
 {
     self.imageStuff.backgroundColor = backgroundColor;
-    self.mainImage.backgroundColor = [self getUIColorFromString: backgroundColor];
+    self.mainImage.backgroundColor = [PresetColorPickerController colorFromName:backgroundColor];
 }
 
 
@@ -274,36 +257,23 @@
 }
 
 #pragma mark - colorPicker
-- (void)getRGBComponents:(CGFloat [3])components forColor:(UIColor *)color {
-    CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
-    unsigned char resultingPixel[4];
-    CGContextRef context = CGBitmapContextCreate(&resultingPixel,
-                                                 1,
-                                                 1,
-                                                 8,
-                                                 4,
-                                                 rgbColorSpace,
-                                                 kCGImageAlphaNoneSkipLast);
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    CGContextFillRect(context, CGRectMake(0, 0, 1, 1));
-    CGContextRelease(context);
-    CGColorSpaceRelease(rgbColorSpace);
+
+- (void) updateColorComponentsWithName:(NSString*) colorName
+{
+    UInt32 colorWithRGBHex = [PresetColorPickerController colorWithRGBHexFromName:colorName];
+   
+    int r = (colorWithRGBHex >> 16) & 0xFF;
+    int g = (colorWithRGBHex >> 8) & 0xFF;
+    int b = (colorWithRGBHex) & 0xFF;
     
-    for (int component = 0; component < 3; component++) {
-        components[component] = resultingPixel[component] / 255.0f;
-    }
+    self.red    = r/ 255.0f;
+    self.green  = g/ 255.0f;
+    self.blue   = b/ 255.0f;
+    self.alpha  = 1.0;
+   
 }
 
-- (void) updateColorComponents:(UIColor*) color
-{
-    CGFloat components[3];
-    [self getRGBComponents:components forColor:color];
-    
-    self.red = components[0];
-    self.green = components[1];
-    self.blue = components[2];
-    self.alpha = 1.0;
-}
+
 
 #pragma mark - Alpha
 
@@ -328,11 +298,11 @@
     return viewImage;
     
     
-    // le code ci dessous ne retourne pas le background !!! ...
+    // rq: le code ci dessous ne retourne pas le background !!! ...
     //return self.mainImage.image;
 }
 
-#pragma mark Handling touches
+#pragma mark - Handling touches
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -468,6 +438,47 @@
     self.undoButton.enabled = [self canUndo];
 }
 
+- (void)longTapOnPenButtonDetected:(UITapGestureRecognizer *)longRecognizer
+{
+    @try {
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        {
+            [self closeAllPopover];
+            
+            // iPad View
+            if (self.colorPicker == nil)
+            {
+                PresetColorPickerController *tmpColorPicker = [[PresetColorPickerController alloc] init];
+                self.colorPicker = tmpColorPicker;
+                
+                [tmpColorPicker release];
+                
+                self.colorPicker.delegate = self;
+                self.colorPickerPopover = [[[UIPopoverController alloc] initWithContentViewController:colorPicker] autorelease];
+            }
+            
+            [self.colorPickerPopover presentPopoverFromBarButtonItem:self.rubberBarButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        }
+        else
+        {
+            //[self presentViewController:self.colorPicker animated:YES completion:nil];
+            // other views
+            if (self.colorPicker == nil)
+            {
+                self.colorPicker = [[PresetColorPickerController alloc] init];
+                
+                self.colorPicker.delegate = self;
+                self.colorPickerPopover=nil;
+            }
+            
+            
+            [self presentViewController:self.colorPicker animated:YES completion:nil];
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%@", exception.reason);
+    }
+}
 
                                                                                                                                             
 
@@ -490,28 +501,30 @@
 {
     self.isRubberMode = !self.isRubberMode;
     self.rubberButton.selected = self.isRubberMode;
-    self.colorButton.enabled = !self.isRubberMode;
+ 
+    //self.colorButton.enabled = !self.isRubberMode;
     
     if ( isRubberMode)
     {
         if ( self.imageStuff!= nil && self.imageStuff.backgroundColor != nil )
         // MAJ des red/green...
-            [self updateColorComponents:[self getUIColorFromString:self.imageStuff.backgroundColor]];
+            [self  updateColorComponentsWithName:self.imageStuff.backgroundColor];
         else
-            [self updateColorComponents:[UIColor whiteColor]];
+            [self updateColorComponentsWithName:@"White"];
     }
     else
     {
         // MAJ des red/green...
-        [self updateColorComponents:self.currentColor];
+        [self updateColorComponentsWithName:self.currentColorName];
     }
+  
 }
 
 
 #pragma mark - preventing simultaneous popups... HandleOtherPopupsDelegate... 
 - (void) enableAllOtherPopups:(Boolean) enable
 {
-    self.colorButton.enabled = enable;
+    // self.colorButton.enabled = enable;
     self.favoritesButton.enabled = enable;
 }
 
@@ -538,23 +551,9 @@
     [self closeAllPopover];
     UIActionSheet *popupQuery;
     
-    NSArray *versionCompatibility = [[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."];
+   // NSArray *versionCompatibility = [[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."];
     
-    if ( 6 == [[versionCompatibility objectAtIndex:0] intValue] )
-    {
-        /// iOS6 is installed
-        popupQuery = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Share...",nil) delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Mail it",nil) , NSLocalizedString(@"Tweet it",nil) , NSLocalizedString(@"on Facebook",nil) , NSLocalizedString(@"Save to Camera Roll",nil),nil];
-        
-    }
-    else if ( 5 == [[versionCompatibility objectAtIndex:0] intValue] )
-    {
-        popupQuery = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Share...",nil) delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Mail it",nil) , NSLocalizedString(@"Tweet it",nil) , NSLocalizedString(@"Save to Camera Roll", nil),nil];
-    }
-    else
-    {
-        popupQuery = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Share...",nil) delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Mail it",nil), NSLocalizedString(@"Save to Camera Roll", nil), nil];
-        
-    }
+    popupQuery = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Share...",nil) delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Mail it",nil) , NSLocalizedString(@"Tweet it",nil) , NSLocalizedString(@"on Facebook",nil) , NSLocalizedString(@"Save to Camera Roll",nil),nil];
     
     popupQuery.actionSheetStyle = UIActionSheetStyleBlackOpaque;
     popupQuery.tag = SHARE_ALERTVIEW_TAG;
@@ -569,7 +568,7 @@
 {
     if ( actionSheet.tag == SHARE_ALERTVIEW_TAG)
     {
-        NSLog(@"buttonIndex<%d>", buttonIndex);
+        NSLog(@"buttonIndex<%ld>", (long)buttonIndex);
         
         NSString *strTitle = NSLocalizedString(@"Look at this picture!",nil);
         
@@ -577,8 +576,7 @@
         NSLog(@"title buttonIndex<%@>", strButtonPressed);
       
         if ( ![strButtonPressed compare:NSLocalizedString(@"Mail it",nil)] && [MFMailComposeViewController canSendMail]) {
-            //Mail it clicked
-            
+
             MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
             picker.mailComposeDelegate = self;
             
@@ -601,24 +599,46 @@
             // Fill out the email body text
             [picker setMessageBody:strTitle isHTML:YES];
             
-            [self presentModalViewController:picker animated:YES];
+            [self presentViewController:picker animated:YES completion:nil];
             [picker release];
             
         }
         if (![strButtonPressed compare:NSLocalizedString(@"Tweet it",nil)] )
         {
-            //Tweet it clicked
-            if ([TWTweetComposeViewController canSendTweet])
-            {
-                TWTweetComposeViewController *tweetSheet = [[TWTweetComposeViewController alloc] init];
-                [tweetSheet setInitialText:strTitle];
+            if([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
                 
-                [tweetSheet addImage:[self getUpdatedImage]];
+                SLComposeViewController *controller = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
                 
-                [self presentModalViewController:tweetSheet animated:YES];
+                SLComposeViewControllerCompletionHandler myBlock = ^(SLComposeViewControllerResult result){
+                    if (result == SLComposeViewControllerResultCancelled) {
+                        
+                        NSLog(@"Cancelled");
+                        
+                    } else
+                        
+                    {
+                        NSLog(@"Done");
+                    }
+                    
+                    [controller dismissViewControllerAnimated:YES completion:Nil];
+                };
+                controller.completionHandler =myBlock;
+                
+                //Adding the Text to the facebook post value from iOS
+                [controller setInitialText:strTitle];
+                
+                //Adding the URL to the facebook post value from iOS
+                
+                //[controller addURL:[NSURL URLWithString:@"http://www.mobile.safilsunny.com"]];
+                
+                //Adding the Image to the facebook post value from iOS
+                
+                [controller addImage:[self getUpdatedImage]];
+                
+                [self presentViewController:controller animated:YES completion:Nil];
+                
             }
-            else
-            {
+            else{
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Sorry",nil)
                                                                     message:NSLocalizedString(@"You can't send a tweet right now, make sure your device has an internet connection and you have at least one Twitter account setup" , nil)
                                                                    delegate:self
@@ -627,18 +647,20 @@
                 [alertView show];
                 [alertView release];
             }
-        }
+          }
 
         if (![strButtonPressed compare:NSLocalizedString(@"Save to Camera Roll",nil)] )
         {
             UIImageWriteToSavedPhotosAlbum([self getUpdatedImage], self,@selector(image:didFinishSavingWithError:contextInfo:), nil);
         }
         
+        // SLServiceTypeSinaWeibo
+        
         if (![strButtonPressed compare:NSLocalizedString(@"on Facebook",nil)] )
         {
             NSArray *versionCompatibility = [[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."];
             
-            if ( 6 == [[versionCompatibility objectAtIndex:0] intValue] )
+            if ( 6 <= [[versionCompatibility objectAtIndex:0] intValue] )
             {
                 //Facebook  it clicked
                 
@@ -696,7 +718,7 @@
 // Dismisses the email composition interface when users tap Cancel or Send. Proceeds to update the message field with the result of the operation.
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error 
 {	
-	[self dismissModalViewControllerAnimated:YES];
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -766,7 +788,7 @@
             ///////////////
             
             UITabBarController *myTabBarController = [[[UITabBarController alloc] init] autorelease];
-            myTabBarController.viewControllers = [NSArray arrayWithObjects:myFavoritesNavigationController, mySettingsNavigationViewController, nil];
+            myTabBarController.viewControllers = [NSArray arrayWithObjects: mySettingsNavigationViewController, myFavoritesNavigationController, nil];
             
             
             // CleanUp
@@ -828,7 +850,7 @@
         [myImagesViewController2 release];
         [mySettingsNavigationViewController release];
         
-        [self presentModalViewController:myTabBarControllerinModalViewController animated:YES];
+        [self presentViewController:myTabBarControllerinModalViewController animated:YES completion:nil];
     }
 }
 
@@ -847,7 +869,7 @@
     self.isRubberMode=FALSE;
       
     self.rubberButton.selected=FALSE;
-    self.colorButton.enabled = TRUE;
+    //self.colorButton.enabled = TRUE;
 }
 
 
@@ -859,7 +881,7 @@
 
 - (IBAction) confirmCleanup:(id)sender
 {
-    UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Hello!",nil)
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"",nil)
                                                       message:NSLocalizedString(@"Confirm deletion ?", nil)
                                                      delegate:self
                                             cancelButtonTitle:NSLocalizedString(@"OK",nil)
@@ -888,56 +910,23 @@
     [self saveCurrentImageStuff];
 }
 
+
+
 #pragma mark - colorPicker
-- (IBAction)setColorButtonTapped:(id)sender
+
+
+
+- (void)colorNameSelected:(NSString *)colorName
 {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-    {
-        [self closeAllPopover];
-
-        // iPad View
-        if (self.colorPicker == nil)
-        {
-            PresetColorPicker *tmpColorPicker = [[PresetColorPicker alloc] init];
-            self.colorPicker = tmpColorPicker;
-            
-            [tmpColorPicker release];
-            
-            self.colorPicker.delegate = self;
-            self.colorPickerPopover = [[[UIPopoverController alloc] initWithContentViewController:colorPicker] autorelease];
-        }
-        
-        [self.colorPickerPopover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-    }
-    else
-    {
-        // other views
-        if (self.colorPicker == nil)
-        {
-            PresetColorPicker *tmpColorPicker = [[PresetColorPicker alloc] init];
-            self.colorPicker = tmpColorPicker;
-            
-            [tmpColorPicker release];
-            
-            self.colorPicker.delegate = self;
-            self.colorPickerPopover=nil;
-        }
-        [self presentModalViewController:self.colorPicker animated:YES];
-    }
-}
-
-
-- (void)colorSelected:(UIColor *)color
-{
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0"))
-    {
-        // change color of button
-        [self.colorButton setTintColor:color];
-    }
+    UIColor *color = [PresetColorPickerController colorFromName:colorName];
+ 
+    // change color of button
+    //[self.colorButton setTintColor:color];
     
     // MAJ des red/green...
-    [self updateColorComponents:color];
+    [self updateColorComponentsWithName:colorName];
     self.currentColor = color;
+    self.currentColorName = colorName;
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
@@ -949,8 +938,8 @@
     else
     {
         [self.navigationController popToRootViewControllerAnimated:FALSE];
-        //done in viewWillDisappear ... self.navigationController.navigationBar.hidden=TRUE;
     }
+   
 }
 
 

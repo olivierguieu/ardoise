@@ -67,7 +67,7 @@
     MCOAppDelegate * tmpAppDelegate = [[UIApplication sharedApplication] delegate];
     [tmpAppDelegate.myArdoiseViewController popoverControllerDidDismissPopover:nil];
     
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

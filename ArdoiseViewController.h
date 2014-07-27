@@ -11,7 +11,7 @@
 
 // Envoi de Mail
 #import <MessageUI/MessageUI.h>
-#import "PresetColorPicker.h"
+#import "PresetColorPickerController.h"
 #import "RecentImagesController.h"
 #import "SettingsNavigationViewController.h"
 #import "IASKAppSettingsViewController.h"
@@ -19,13 +19,13 @@
 
 
 @class ArdoiseView;
-@class PresetColorPicker;
+@class PresetColorPickerController;
 @class RecentImagesController;
 @class ImageStuff;
 @class ArrayOfLines;
 
 
-@interface ArdoiseViewController : UIViewController <PresetColorPickerDelegate,RecentImagesDelegate,UIPopoverControllerDelegate, UIActionSheetDelegate,MFMailComposeViewControllerDelegate,  UIAlertViewDelegate>
+@interface ArdoiseViewController : UIViewController <PresetColorPickerDelegate,RecentImagesDelegate,UIPopoverControllerDelegate, UIActionSheetDelegate,MFMailComposeViewControllerDelegate,  UIAlertViewDelegate, UIGestureRecognizerDelegate>
 {
     CGPoint lastPoint;
     BOOL mouseSwiped;
@@ -36,11 +36,15 @@
 
 // Color Handling
 @property (nonatomic, retain) UIColor *currentColor;
+@property (nonatomic, retain) NSString *currentColorName;
+
+
+
 @property (nonatomic, assign) CGFloat red;
 @property (nonatomic, assign) CGFloat green;
 @property (nonatomic, assign) CGFloat blue;
 @property (nonatomic, assign) CGFloat alpha;
-- (void) updateColorComponents:(UIColor*) color;
+- (void) updateColorComponentsWithName:(NSString*) colorName;
 
 
 
@@ -78,11 +82,12 @@
 @property (nonatomic, retain) UITabBarController *myTabBarControllerinModalViewController;
 
 @property(nonatomic, retain) IBOutlet UIButton          * rubberButton;
-@property(nonatomic, retain) IBOutlet UIBarButtonItem   * colorButton;
+@property(nonatomic, retain) IBOutlet UIBarButtonItem          * rubberBarButton;
 @property(nonatomic, retain) IBOutlet UIBarButtonItem   * shareButton;
 @property(nonatomic, retain) IBOutlet UIBarButtonItem   * favoritesButton;
 @property(nonatomic, retain) IBOutlet UIBarButtonItem   * undoButton;
 
+@property(nonatomic, retain)UILongPressGestureRecognizer *longRecognizer;
 
 // ImageStuff
 @property(nonatomic, retain) ImageStuff * imageStuff;
@@ -109,11 +114,9 @@
 // Color Management
 /////////////////////
 @property (nonatomic, retain) UIPopoverController *colorPickerPopover;
-@property (nonatomic, retain) PresetColorPicker *colorPicker;
+@property (nonatomic, retain) PresetColorPickerController *colorPicker;
 
-- (void) colorSelected:(UIColor *)color;
-- (IBAction) setColorButtonTapped:(id)sender;
-- ( UIColor * ) getUIColorFromString : (NSString *) nameOfColor;
+- (void)colorNameSelected:(NSString *)colorName;
 
 
 - (void) enableAllOtherPopups:(Boolean) enable;

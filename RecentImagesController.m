@@ -9,7 +9,7 @@
 #import "RecentImagesController.h"
 #import "Includes.h"
 #import "MCOAppDelegate.h"
-#import "RecentImagesTableViewCell.h"
+//#import "RecentImagesTableViewCell.h"
 #import "CustomCell.h"
 
 @implementation RecentImagesController
@@ -144,7 +144,7 @@ NSString * const REUSE_ID_CELL = @"CustomCell";
     MCOAppDelegate * tmpAppDelegate = [[UIApplication sharedApplication] delegate];
     [tmpAppDelegate.myArdoiseViewController setUpArdoiseView];
     
-    [self dismissModalViewControllerAnimated:YES]; 
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void) trashTapped:(id)sender
