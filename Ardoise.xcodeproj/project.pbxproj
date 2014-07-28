@@ -65,16 +65,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		369FE491160FA1F30029B012 /* 640_1096.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 640_1096.png; sourceTree = "<group>"; };
 		36A2B9A414C617D800A8DAA7 /* Includes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Includes.h; sourceTree = "<group>"; };
 		36A2B9A514C61A7500A8DAA7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		36A2B9A714C61A9200A8DAA7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		36A2B9AD14C7507C00A8DAA7 /* ArdoiseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArdoiseViewController.xib; sourceTree = "<group>"; };
-		36A55AF615B75D7D003ECBD2 /* Screenshot_20120718_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Screenshot_20120718_1.png; sourceTree = "<group>"; };
-		36A55AF715B75D7D003ECBD2 /* Screenshot_20120718_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Screenshot_20120718_2.png; sourceTree = "<group>"; };
-		36A55AF815B75D7D003ECBD2 /* Screenshot_20120718_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Screenshot_20120718_3.png; sourceTree = "<group>"; };
-		36A55AF915B75D7D003ECBD2 /* Screenshot_20120718_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Screenshot_20120718_4.png; sourceTree = "<group>"; };
-		36A55AFA15B75D7D003ECBD2 /* Screenshot_20120718_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Screenshot_20120718_5.png; sourceTree = "<group>"; };
 		36A55AFC15B7615E003ECBD2 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = SOURCE_ROOT; };
 		36B1619015AC359A00740CDB /* ArdoiseViewController-others.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ArdoiseViewController-others.xib"; sourceTree = "<group>"; };
 		36C741E216458EBB00D95C52 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
@@ -188,12 +182,6 @@
 		36A55AFB15B75D88003ECBD2 /* Screenshot */ = {
 			isa = PBXGroup;
 			children = (
-				369FE491160FA1F30029B012 /* 640_1096.png */,
-				36A55AF615B75D7D003ECBD2 /* Screenshot_20120718_1.png */,
-				36A55AF715B75D7D003ECBD2 /* Screenshot_20120718_2.png */,
-				36A55AF815B75D7D003ECBD2 /* Screenshot_20120718_3.png */,
-				36A55AF915B75D7D003ECBD2 /* Screenshot_20120718_4.png */,
-				36A55AFA15B75D7D003ECBD2 /* Screenshot_20120718_5.png */,
 			);
 			name = Screenshot;
 			path = ../../Ardoise;
