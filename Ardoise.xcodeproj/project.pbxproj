@@ -116,6 +116,7 @@
 		F2D88DF214D9E2E500E94232 /* ArrayOfLines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayOfLines.m; sourceTree = "<group>"; };
 		F2DE749F1985975C0064ED62 /* Default~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~ipad.png"; sourceTree = "<group>"; };
 		F2DE74A1198598650064ED62 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		F2DE74A31986EE610064ED62 /* IASKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IASKViewController.h; sourceTree = "<group>"; };
 		F2EF0EDC14DF284E00C5726B /* 06-magnify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "06-magnify.png"; path = "../../Ardoise/06-magnify.png"; sourceTree = "<group>"; };
 		F2F1504615CB222600569DBC /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F2F1504715CB223300569DBC /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -342,6 +343,7 @@
 		F2F3008B14DD2DA100726E22 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F2DE74A31986EE610064ED62 /* IASKViewController.h */,
 				F2F3008C14DD2DA100726E22 /* IASKAppSettingsViewController.h */,
 				F2F3008D14DD2DA100726E22 /* IASKAppSettingsViewController.m */,
 				F2F3008E14DD2DA100726E22 /* IASKAppSettingsWebViewController.h */,
