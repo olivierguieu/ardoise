@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		360339E614D64AE1003317EF /* UIView+FixedApi.m in Sources */ = {isa = PBXBuildFile; fileRef = F2749DE614B88C2100DF2C3E /* UIView+FixedApi.m */; };
+		364AA0C81986ED8A00CB6584 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 364AA0C71986ED8A00CB6584 /* Icon-72.png */; };
+		364AA0CE1986EDB300CB6584 /* 06-magnify.png in Resources */ = {isa = PBXBuildFile; fileRef = 364AA0C91986EDB300CB6584 /* 06-magnify.png */; };
+		364AA0CF1986EDB300CB6584 /* 20-gears.png in Resources */ = {isa = PBXBuildFile; fileRef = 364AA0CA1986EDB300CB6584 /* 20-gears.png */; };
+		364AA0D01986EDB300CB6584 /* ArdoiseIcon1024.icns in Resources */ = {isa = PBXBuildFile; fileRef = 364AA0CB1986EDB300CB6584 /* ArdoiseIcon1024.icns */; };
+		364AA0D11986EDB300CB6584 /* brush.png in Resources */ = {isa = PBXBuildFile; fileRef = 364AA0CC1986EDB300CB6584 /* brush.png */; };
+		364AA0D21986EDB300CB6584 /* eraser.png in Resources */ = {isa = PBXBuildFile; fileRef = 364AA0CD1986EDB300CB6584 /* eraser.png */; };
 		36A2B9A614C61A7500A8DAA7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36A2B9A514C61A7500A8DAA7 /* SystemConfiguration.framework */; };
 		36A2B9A814C61A9200A8DAA7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36A2B9A714C61A9200A8DAA7 /* Security.framework */; };
 		36A2B9AE14C7507C00A8DAA7 /* ArdoiseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36A2B9AD14C7507C00A8DAA7 /* ArdoiseViewController.xib */; };
@@ -16,14 +22,12 @@
 		36C741E416458EBB00D95C52 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C741E316458EBB00D95C52 /* CustomCell.m */; };
 		36C741E61645901F00D95C52 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36C741E51645901F00D95C52 /* CustomCell.xib */; };
 		36C741E81645906C00D95C52 /* CustomCell-others.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36C741E71645906C00D95C52 /* CustomCell-others.xib */; };
-		36D8090415E93A70000A5D73 /* ArdoiseIcon1024.icns in Resources */ = {isa = PBXBuildFile; fileRef = 36D8090315E93A70000A5D73 /* ArdoiseIcon1024.icns */; };
 		F20F89A214BB8ADD00897666 /* PresetColorPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20F899F14BB8ADD00897666 /* PresetColorPickerController.m */; };
 		F2116B5014BCE3D4008DC554 /* FileOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = F2116B4F14BCE3D4008DC554 /* FileOperations.m */; };
 		F2116B5514BCE5F7008DC554 /* RecentImagesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2116B5414BCE5F7008DC554 /* RecentImagesController.m */; };
 		F21A7B1414BE2AD800E608C8 /* ImageStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = F21A7B1314BE2AD800E608C8 /* ImageStuff.m */; };
 		F2483C9714F6E864000F66FC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F27908FB14BA3C440002AC8C /* QuartzCore.framework */; };
 		F26E18A9160EEA2000332BC0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F26E18A8160EEA2000332BC0 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		F28E2AEA152E41310053B25D /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = F28E2AE9152E41310053B25D /* Icon-72.png */; };
 		F29892A114DB2CD700D373C8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F29892A314DB2CD700D373C8 /* Localizable.strings */; };
 		F2A4845C192F2A6A005BB784 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2A4845B192F2A6A005BB784 /* Images.xcassets */; };
 		F2A48460192F2E05005BB784 /* libFlurry_5.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2A4845E192F2D46005BB784 /* libFlurry_5.0.0.a */; };
@@ -36,14 +40,10 @@
 		F2BC4FBB14B0A82C00BDE9FD /* MCOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F2BC4FBA14B0A82C00BDE9FD /* MCOAppDelegate.m */; };
 		F2BC4FCB14B0AD7E00BDE9FD /* ArdoiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2BC4FC914B0AD7E00BDE9FD /* ArdoiseViewController.m */; };
 		F2BC501114B0D24200BDE9FD /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2BC501014B0D24200BDE9FD /* MessageUI.framework */; };
-		F2BD80D314CF2DD0003439FF /* brush.png in Resources */ = {isa = PBXBuildFile; fileRef = F2BD80D114CF2DD0003439FF /* brush.png */; };
-		F2BD80D414CF2DD0003439FF /* eraser.png in Resources */ = {isa = PBXBuildFile; fileRef = F2BD80D214CF2DD0003439FF /* eraser.png */; };
 		F2D88DF314D9E2E600E94232 /* ArrayOfLines.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D88DF214D9E2E500E94232 /* ArrayOfLines.m */; };
 		F2DE74A01985975C0064ED62 /* Default~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F2DE749F1985975C0064ED62 /* Default~ipad.png */; };
 		F2DE74A2198598650064ED62 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2DE74A1198598650064ED62 /* Default@2x.png */; };
-		F2EF0EDD14DF284E00C5726B /* 06-magnify.png in Resources */ = {isa = PBXBuildFile; fileRef = F2EF0EDC14DF284E00C5726B /* 06-magnify.png */; };
 		F2F3007914DC789B00726E22 /* SettingsNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F3007714DC789B00726E22 /* SettingsNavigationViewController.m */; };
-		F2F3008014DC815E00726E22 /* 20-gears.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F3007F14DC815E00726E22 /* 20-gears.png */; };
 		F2F300B314DD2DA100726E22 /* IASKAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F3008D14DD2DA100726E22 /* IASKAppSettingsViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		F2F300B414DD2DA100726E22 /* IASKAppSettingsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F3008F14DD2DA100726E22 /* IASKAppSettingsWebViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		F2F300B514DD2DA100726E22 /* IASKSpecifierValuesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F3009114DD2DA100726E22 /* IASKSpecifierValuesViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -63,6 +63,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		364AA0C71986ED8A00CB6584 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = SOURCE_ROOT; };
+		364AA0C91986EDB300CB6584 /* 06-magnify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "06-magnify.png"; path = "Ardoise/06-magnify.png"; sourceTree = SOURCE_ROOT; };
+		364AA0CA1986EDB300CB6584 /* 20-gears.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "20-gears.png"; path = "Ardoise/20-gears.png"; sourceTree = SOURCE_ROOT; };
+		364AA0CB1986EDB300CB6584 /* ArdoiseIcon1024.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = ArdoiseIcon1024.icns; path = Ardoise/ArdoiseIcon1024.icns; sourceTree = SOURCE_ROOT; };
+		364AA0CC1986EDB300CB6584 /* brush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = brush.png; path = Ardoise/brush.png; sourceTree = SOURCE_ROOT; };
+		364AA0CD1986EDB300CB6584 /* eraser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = eraser.png; path = Ardoise/eraser.png; sourceTree = SOURCE_ROOT; };
 		36A2B9A414C617D800A8DAA7 /* Includes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Includes.h; sourceTree = "<group>"; };
 		36A2B9A514C61A7500A8DAA7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		36A2B9A714C61A9200A8DAA7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -73,7 +79,6 @@
 		36C741E316458EBB00D95C52 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
 		36C741E51645901F00D95C52 /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		36C741E71645906C00D95C52 /* CustomCell-others.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CustomCell-others.xib"; sourceTree = "<group>"; };
-		36D8090315E93A70000A5D73 /* ArdoiseIcon1024.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = ArdoiseIcon1024.icns; path = ../../Ardoise/ArdoiseIcon1024.icns; sourceTree = "<group>"; };
 		F20F899E14BB8ADD00897666 /* PresetColorPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresetColorPickerController.h; sourceTree = "<group>"; };
 		F20F899F14BB8ADD00897666 /* PresetColorPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresetColorPickerController.m; sourceTree = "<group>"; };
 		F2116B4E14BCE3D4008DC554 /* FileOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileOperations.h; sourceTree = SOURCE_ROOT; };
@@ -89,7 +94,6 @@
 		F2749DE614B88C2100DF2C3E /* UIView+FixedApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FixedApi.m"; sourceTree = "<group>"; };
 		F27908FB14BA3C440002AC8C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F282C06615B1BFA800273808 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
-		F28E2AE9152E41310053B25D /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "../../Icon-72.png"; sourceTree = "<group>"; };
 		F29892A214DB2CD700D373C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F29892A414DB2CE000D373C8 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F2A4845B192F2A6A005BB784 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "L'Ardoise de Margot/Images.xcassets"; sourceTree = "<group>"; };
@@ -110,18 +114,14 @@
 		F2BC4FC814B0AD7E00BDE9FD /* ArdoiseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArdoiseViewController.h; sourceTree = SOURCE_ROOT; };
 		F2BC4FC914B0AD7E00BDE9FD /* ArdoiseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArdoiseViewController.m; sourceTree = SOURCE_ROOT; };
 		F2BC501014B0D24200BDE9FD /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		F2BD80D114CF2DD0003439FF /* brush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = brush.png; path = ../../Ardoise/brush.png; sourceTree = "<group>"; };
-		F2BD80D214CF2DD0003439FF /* eraser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = eraser.png; path = ../../Ardoise/eraser.png; sourceTree = "<group>"; };
 		F2D88DF114D9E2E500E94232 /* ArrayOfLines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayOfLines.h; sourceTree = "<group>"; };
 		F2D88DF214D9E2E500E94232 /* ArrayOfLines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayOfLines.m; sourceTree = "<group>"; };
 		F2DE749F1985975C0064ED62 /* Default~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~ipad.png"; sourceTree = "<group>"; };
 		F2DE74A1198598650064ED62 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		F2EF0EDC14DF284E00C5726B /* 06-magnify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "06-magnify.png"; path = "../../Ardoise/06-magnify.png"; sourceTree = "<group>"; };
 		F2F1504615CB222600569DBC /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F2F1504715CB223300569DBC /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F2F3007614DC789B00726E22 /* SettingsNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsNavigationViewController.h; path = Ardoise/SettingsNavigationViewController.h; sourceTree = "<group>"; };
 		F2F3007714DC789B00726E22 /* SettingsNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsNavigationViewController.m; path = Ardoise/SettingsNavigationViewController.m; sourceTree = "<group>"; };
-		F2F3007F14DC815E00726E22 /* 20-gears.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "20-gears.png"; path = "../../Ardoise/20-gears.png"; sourceTree = "<group>"; };
 		F2F3008C14DD2DA100726E22 /* IASKAppSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IASKAppSettingsViewController.h; sourceTree = "<group>"; };
 		F2F3008D14DD2DA100726E22 /* IASKAppSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IASKAppSettingsViewController.m; sourceTree = "<group>"; };
 		F2F3008E14DD2DA100726E22 /* IASKAppSettingsWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IASKAppSettingsWebViewController.h; sourceTree = "<group>"; };
@@ -288,13 +288,13 @@
 			isa = PBXGroup;
 			children = (
 				36A55AFB15B75D88003ECBD2 /* Screenshot */,
-				F28E2AE9152E41310053B25D /* Icon-72.png */,
 				36A55AFC15B7615E003ECBD2 /* Icon.png */,
-				36D8090315E93A70000A5D73 /* ArdoiseIcon1024.icns */,
-				F2EF0EDC14DF284E00C5726B /* 06-magnify.png */,
-				F2F3007F14DC815E00726E22 /* 20-gears.png */,
-				F2BD80D114CF2DD0003439FF /* brush.png */,
-				F2BD80D214CF2DD0003439FF /* eraser.png */,
+				364AA0C71986ED8A00CB6584 /* Icon-72.png */,
+				364AA0C91986EDB300CB6584 /* 06-magnify.png */,
+				364AA0CA1986EDB300CB6584 /* 20-gears.png */,
+				364AA0CB1986EDB300CB6584 /* ArdoiseIcon1024.icns */,
+				364AA0CC1986EDB300CB6584 /* brush.png */,
+				364AA0CD1986EDB300CB6584 /* eraser.png */,
 			);
 			name = Ressources;
 			path = EGOTableViewPullRefresh/Resources;
@@ -448,20 +448,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2BC4FB514B0A82C00BDE9FD /* InfoPlist.strings in Resources */,
+				364AA0D21986EDB300CB6584 /* eraser.png in Resources */,
 				36A2B9AE14C7507C00A8DAA7 /* ArdoiseViewController.xib in Resources */,
-				F2BD80D314CF2DD0003439FF /* brush.png in Resources */,
+				364AA0CF1986EDB300CB6584 /* 20-gears.png in Resources */,
 				F2DE74A01985975C0064ED62 /* Default~ipad.png in Resources */,
-				F2BD80D414CF2DD0003439FF /* eraser.png in Resources */,
 				F2A4845C192F2A6A005BB784 /* Images.xcassets in Resources */,
 				F29892A114DB2CD700D373C8 /* Localizable.strings in Resources */,
-				F2F3008014DC815E00726E22 /* 20-gears.png in Resources */,
 				F2F300CA14DD2E1C00726E22 /* Settings.bundle in Resources */,
-				F2EF0EDD14DF284E00C5726B /* 06-magnify.png in Resources */,
-				F28E2AEA152E41310053B25D /* Icon-72.png in Resources */,
+				364AA0C81986ED8A00CB6584 /* Icon-72.png in Resources */,
 				36B1619115AC359A00740CDB /* ArdoiseViewController-others.xib in Resources */,
 				36A55AFD15B7615E003ECBD2 /* Icon.png in Resources */,
-				36D8090415E93A70000A5D73 /* ArdoiseIcon1024.icns in Resources */,
+				364AA0D01986EDB300CB6584 /* ArdoiseIcon1024.icns in Resources */,
 				F2DE74A2198598650064ED62 /* Default@2x.png in Resources */,
+				364AA0D11986EDB300CB6584 /* brush.png in Resources */,
+				364AA0CE1986EDB300CB6584 /* 06-magnify.png in Resources */,
 				36C741E61645901F00D95C52 /* CustomCell.xib in Resources */,
 				36C741E81645906C00D95C52 /* CustomCell-others.xib in Resources */,
 			);
