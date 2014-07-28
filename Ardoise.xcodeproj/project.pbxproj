@@ -342,6 +342,7 @@
 		F2F3008B14DD2DA100726E22 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F2DE74A31986EE610064ED62 /* IASKViewController.h */,
 				F2F3008C14DD2DA100726E22 /* IASKAppSettingsViewController.h */,
 				F2F3008D14DD2DA100726E22 /* IASKAppSettingsViewController.m */,
 				F2F3008E14DD2DA100726E22 /* IASKAppSettingsWebViewController.h */,
