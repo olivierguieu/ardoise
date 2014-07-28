@@ -41,9 +41,7 @@
 		F2D88DF314D9E2E600E94232 /* ArrayOfLines.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D88DF214D9E2E500E94232 /* ArrayOfLines.m */; };
 		F2DE74A01985975C0064ED62 /* Default~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F2DE749F1985975C0064ED62 /* Default~ipad.png */; };
 		F2DE74A2198598650064ED62 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2DE74A1198598650064ED62 /* Default@2x.png */; };
-		F2EB4D0314B848E800F53384 /* iPadBackgroundTexture-grey.png in Resources */ = {isa = PBXBuildFile; fileRef = F2EB4D0214B848E800F53384 /* iPadBackgroundTexture-grey.png */; };
 		F2EF0EDD14DF284E00C5726B /* 06-magnify.png in Resources */ = {isa = PBXBuildFile; fileRef = F2EF0EDC14DF284E00C5726B /* 06-magnify.png */; };
-		F2F3006814DC324600726E22 /* SmallStarButtonBar.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F3006714DC324600726E22 /* SmallStarButtonBar.png */; };
 		F2F3007914DC789B00726E22 /* SettingsNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F3007714DC789B00726E22 /* SettingsNavigationViewController.m */; };
 		F2F3008014DC815E00726E22 /* 20-gears.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F3007F14DC815E00726E22 /* 20-gears.png */; };
 		F2F300B314DD2DA100726E22 /* IASKAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F3008D14DD2DA100726E22 /* IASKAppSettingsViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -118,11 +116,9 @@
 		F2D88DF214D9E2E500E94232 /* ArrayOfLines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayOfLines.m; sourceTree = "<group>"; };
 		F2DE749F1985975C0064ED62 /* Default~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~ipad.png"; sourceTree = "<group>"; };
 		F2DE74A1198598650064ED62 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		F2EB4D0214B848E800F53384 /* iPadBackgroundTexture-grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPadBackgroundTexture-grey.png"; path = "../../Ardoise/iPadBackgroundTexture-grey.png"; sourceTree = "<group>"; };
 		F2EF0EDC14DF284E00C5726B /* 06-magnify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "06-magnify.png"; path = "../../Ardoise/06-magnify.png"; sourceTree = "<group>"; };
 		F2F1504615CB222600569DBC /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F2F1504715CB223300569DBC /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		F2F3006714DC324600726E22 /* SmallStarButtonBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SmallStarButtonBar.png; path = ../../Ardoise/SmallStarButtonBar.png; sourceTree = "<group>"; };
 		F2F3007614DC789B00726E22 /* SettingsNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsNavigationViewController.h; path = Ardoise/SettingsNavigationViewController.h; sourceTree = "<group>"; };
 		F2F3007714DC789B00726E22 /* SettingsNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsNavigationViewController.m; path = Ardoise/SettingsNavigationViewController.m; sourceTree = "<group>"; };
 		F2F3007F14DC815E00726E22 /* 20-gears.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "20-gears.png"; path = "../../Ardoise/20-gears.png"; sourceTree = "<group>"; };
@@ -297,8 +293,6 @@
 				36D8090315E93A70000A5D73 /* ArdoiseIcon1024.icns */,
 				F2EF0EDC14DF284E00C5726B /* 06-magnify.png */,
 				F2F3007F14DC815E00726E22 /* 20-gears.png */,
-				F2F3006714DC324600726E22 /* SmallStarButtonBar.png */,
-				F2EB4D0214B848E800F53384 /* iPadBackgroundTexture-grey.png */,
 				F2BD80D114CF2DD0003439FF /* brush.png */,
 				F2BD80D214CF2DD0003439FF /* eraser.png */,
 			);
@@ -454,14 +448,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2BC4FB514B0A82C00BDE9FD /* InfoPlist.strings in Resources */,
-				F2EB4D0314B848E800F53384 /* iPadBackgroundTexture-grey.png in Resources */,
 				36A2B9AE14C7507C00A8DAA7 /* ArdoiseViewController.xib in Resources */,
 				F2BD80D314CF2DD0003439FF /* brush.png in Resources */,
 				F2DE74A01985975C0064ED62 /* Default~ipad.png in Resources */,
 				F2BD80D414CF2DD0003439FF /* eraser.png in Resources */,
 				F2A4845C192F2A6A005BB784 /* Images.xcassets in Resources */,
 				F29892A114DB2CD700D373C8 /* Localizable.strings in Resources */,
-				F2F3006814DC324600726E22 /* SmallStarButtonBar.png in Resources */,
 				F2F3008014DC815E00726E22 /* 20-gears.png in Resources */,
 				F2F300CA14DD2E1C00726E22 /* Settings.bundle in Resources */,
 				F2EF0EDD14DF284E00C5726B /* 06-magnify.png in Resources */,
