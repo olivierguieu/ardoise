@@ -10,7 +10,6 @@
 #define Ardoise_Includes_h
 
 #import "FileOperations.h"
-//#import "ArdoiseView.h"
 #import "ArdoiseViewController.h"
 #import "FileOperations.h"
 #import "RecentImagesController.h"

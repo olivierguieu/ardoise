@@ -167,19 +167,25 @@ static NSMutableArray *arrayOfColorInformation = nil;
 	
 	CGRect rect = CGRectMake(0.0, 0.0, 88.0, [tableView rowHeight]);
 	
-	UIGraphicsBeginImageContext(rect.size);
+    // ajout OGU - cf http://stackoverflow.com/questions/19167732/coregraphics-drawing-causes-memory-warnings-crash-on-ios-7
+    @autoreleasepool
+    {
+        UIGraphicsBeginImageContext(rect.size);
 	
-	CGContextRef context = UIGraphicsGetCurrentContext();
+        CGContextRef context = UIGraphicsGetCurrentContext();
 	
-	CGContextSetFillColorWithColor(context, [[PresetColorPickerController colorWithRGBHex:[colorInformation.colorHex integerValue]] CGColor]);
+        CGContextSetFillColorWithColor(context, [[PresetColorPickerController colorWithRGBHex:[colorInformation.colorHex integerValue]] CGColor]);
 	
-	CGContextFillRect(context, rect);
+        CGContextFillRect(context, rect);
 	
-	UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
 	
-	UIGraphicsEndImageContext();
+        UIGraphicsEndImageContext();
+   
 	
-	[[cell imageView] setImage:image];
+        [[cell imageView] setImage:image];
+    }
+    
 	[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     return cell;

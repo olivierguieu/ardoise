@@ -35,6 +35,7 @@
         self.backgroundColor = [chunks objectAtIndex:0];
 
         self.timeStamp = [chunks objectAtIndex:1];
+        
         self.isFavorite = ( [directory isEqualToString:kImagesDirectory]) ? FALSE : TRUE;
         
         if ( fileName != nil )
@@ -59,7 +60,15 @@
         {
             self.backgroundColor = [defaults stringForKey:@"BackgroundColor"];
         }
-        NSLog(@"%@", self.backgroundColor);        
+        
+        if ( self.backgroundColor == nil  )
+        {
+            DLog(@"self.backgroundColor IS NIL :-(");
+        }
+        else
+        {
+            DLog(@"%@", self.backgroundColor);
+        }
     }
 }
 
@@ -93,15 +102,20 @@
         
         // si fileName vide ... on en genere un
         if ( self.imageFileName == nil )
-        {            
-            NSDateFormatter *format = [[NSDateFormatter alloc] init];
-            [format setDateFormat:@"yyyyMMdd_HH:mm:ss"];
-            [format setTimeZone:[NSTimeZone localTimeZone]];    
+        {
+            // tip cf http://www.flexicoder.com/blog/index.php/2013/10/ios-24-hour-date-format/
+            
+            NSDateFormatter *rfc3339DateFormatter = [[NSDateFormatter alloc] init];
+            NSLocale *enUSPOSIXLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+            
+            [rfc3339DateFormatter setLocale:enUSPOSIXLocale];
+            [rfc3339DateFormatter setDateFormat:@"yyyyMMdd_HH:mm:ss"];
+            [rfc3339DateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
             
             NSString *result = [self.backgroundColor stringByAppendingString:@"-"];
-            result = [result stringByAppendingString:[format stringFromDate:[NSDate date]]];
+            result = [result stringByAppendingString:[rfc3339DateFormatter stringFromDate:[NSDate date]]];
             self.imageFileName = result;
-            [format release];
+            [rfc3339DateFormatter release];
         }
         
         NSString *tmpDirectory;
@@ -121,7 +135,7 @@
         
         [tmpDirectory release];
         
-     }
+    }
 }
 
 @end

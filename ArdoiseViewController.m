@@ -25,7 +25,6 @@
 @synthesize recentImages, recentImagesPopover;
 
 @synthesize myTabBarControllerinModalViewController;
-@synthesize tempDrawImage, mainImage;
 
 @synthesize insideView;
 @synthesize red,green,blue,alpha;
@@ -46,7 +45,6 @@
     [ardoiseToolbar release];
     
     [rubberButton release];
-   // [colorButton release];
     [shareButton release];
     [favoritesButton release];
     [undoButton release];
@@ -58,9 +56,6 @@
     [recentImagesPopover release];
     
     [myTabBarControllerinModalViewController release];
-    
-    [tempDrawImage release];
-    [mainImage release];
     
     [arrayOfLines release];
     
@@ -78,9 +73,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
- 
-        
-        
     }
     return self;
 }
@@ -129,10 +121,10 @@
     
     self.isDirty = FALSE;    
     self.imageStuff = [[ImageStuff alloc] init];
-    self.arrayOfLines = [[ArrayOfLines alloc] init];
+    self.insideView.arrayOfLines = [[ArrayOfLines alloc] init];
     
-    self.undoArrayOfImages = [[NSMutableArray alloc] initWithCapacity:10];
-    self.undoButton.enabled = [self canUndo];
+//    self.undoArrayOfImages = [[NSMutableArray alloc] initWithCapacity:10];
+//    self.undoButton.enabled = [self canUndo];
     
     self.longRecognizer= [[ UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longTapOnPenButtonDetected:)];
     [self.rubberButton addGestureRecognizer:self.longRecognizer];
@@ -141,6 +133,12 @@
     [self applyDefaultBackground];
     
     [self setUpArdoiseView];
+    
+    // undo handling...
+    [self resetUndo];
+    [self pushImage:[self getUpdatedImage]];
+    self.undoButton.enabled = [self canUndo];
+
 }
 
 
@@ -166,8 +164,6 @@
 }
 
 
-
-
 #pragma mark - undoManagement
 - (void) pushImage: (UIImage *) image
 {
@@ -175,15 +171,32 @@
         self.undoArrayOfImages = [[NSMutableArray alloc] initWithCapacity:10];
     
     [self.undoArrayOfImages addObject:image];
+    
+    DLog(@"PUSH undoArrayOfImages has <%d> elements!", [self.undoArrayOfImages count]);
 }
 
-- (UIImage *) popImage 
+- (UIImage *) popImage
 {
-  // todo ... NSAssert(<#condition#>, <#desc, ...#>)
+    
     UIImage *res;
-    res = [self.undoArrayOfImages objectAtIndex:([self.undoArrayOfImages count]-1)];
-    [res retain];
-    [self.undoArrayOfImages removeLastObject];
+    
+    @try
+    {
+        // last image is always the current one
+        [self.undoArrayOfImages removeLastObject];
+        
+        // return the last one... now...
+        res =[self.undoArrayOfImages objectAtIndex:([self.undoArrayOfImages count] - 1 )];
+        [res retain];
+        
+        DLog(@"POP undoArrayOfImages has <%d> elements!", [self.undoArrayOfImages count]);
+    }
+    @catch (NSException *exception)
+    {
+        DLog(@"%@", exception.reason);
+        res = nil;
+    }
+    
     return res;
 }
 
@@ -191,15 +204,19 @@
 {
     BOOL res = FALSE;
     
-    if ( self.undoArrayOfImages && [ self.undoArrayOfImages count] )
+    if ( self.undoArrayOfImages && [ self.undoArrayOfImages count] > 1 ) // always at least first image in array...
         res = TRUE;
+    
+    DLog(@"returning... <%d>", res);
     return res;
 }
 
 - (void) resetUndo
 {
-    if ([self canUndo])
-     [self.undoArrayOfImages removeAllObjects];
+    if ([self.undoArrayOfImages count])
+    {
+        [self.undoArrayOfImages removeAllObjects];
+    }
     
     [self.undoArrayOfImages release];
     self.undoArrayOfImages = nil;
@@ -227,8 +244,10 @@
 
 - (void) applyBackGroundColor: (NSString*) backgroundColor
 {
-    self.imageStuff.backgroundColor = backgroundColor;
-    self.mainImage.backgroundColor = [PresetColorPickerController colorFromName:backgroundColor];
+    //self.imageStuff.backgroundColor = backgroundColor;
+    //self.mainImage.backgroundColor = [PresetColorPickerController colorFromName:backgroundColor];
+    
+    self.insideView.backgroundColor = [PresetColorPickerController colorFromName:backgroundColor];
 }
 
 
@@ -236,24 +255,32 @@
 
 - (void) applyImageStuff: (ImageStuff*) newImageStuff
 {
-    [self resetUndo];
-    
     self.isDirty = FALSE;
     
     [self.imageStuff applyAnotherImageStuff:newImageStuff];
     
     if ( self.imageStuff.imageFileName == nil)
     {
-        self.mainImage.image = nil;        
+        [self.insideView eraseDrawing];
     }
     else
     {
         UIImage *tmpImage = [[UIImage alloc] initWithData:self.imageStuff.imageData];
-        self.mainImage.image = tmpImage;
+
+        self.insideView.incrementalImage = tmpImage;
+        [self.insideView setNeedsDisplay];
+        
         [tmpImage release];
     }
     
     [self applyBackGroundColor:self.imageStuff.backgroundColor];
+    [self.insideView setNeedsDisplay];
+    
+    
+    // undo handling...
+    [self resetUndo];
+    [self pushImage:[self getUpdatedImage]];
+    self.undoButton.enabled = [self canUndo];
 }
 
 #pragma mark - colorPicker
@@ -270,7 +297,6 @@
     self.green  = g/ 255.0f;
     self.blue   = b/ 255.0f;
     self.alpha  = 1.0;
-   
 }
 
 
@@ -291,39 +317,24 @@
 
 - (UIImage *) getUpdatedImage
 {
+    UIImage *viewImage ;
     UIGraphicsBeginImageContext(self.insideView.frame.size);
-   [self.insideView.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+    [self.insideView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    viewImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return viewImage;
-    
-    
     // rq: le code ci dessous ne retourne pas le background !!! ...
     //return self.mainImage.image;
 }
 
+
 #pragma mark - Handling touches
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    self.isDirty = TRUE;
-    mouseSwiped = NO;
-	
-    NSSet *allTouches = [event allTouches];
-    if (([allTouches count] > 1 ) && ( self.multiTouchEnabled == TRUE ) )
-    {
-        [arrayOfLines addWithSetOfTouches:allTouches andView:self.insideView andIsFirstTouch:TRUE];
-    }
-    else
-    {
-        UITouch *touch = [touches anyObject];
-        [arrayOfLines addWithOneTouch:touch  andView:self.insideView andIsFirstTouch:TRUE];
-    }
-}
 
+#if 0
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     
-    mouseSwiped = YES;    
+    mouseSwiped = YES;
     NSSet *allTouches = [event allTouches];
     if (([allTouches count] > 1) && (self.multiTouchEnabled == TRUE) )
     {
@@ -335,28 +346,44 @@
         [arrayOfLines addWithOneTouch:touch  andView:self.insideView andIsFirstTouch:FALSE];
     }
     
-    UIGraphicsBeginImageContext(self.insideView.frame.size);
-    [self.tempDrawImage.image drawInRect:CGRectMake(0, 0, self.insideView.frame.size.width, self.insideView.frame.size.height)];
+    // cf http://code.tutsplus.com/tutorials/ios-sdk-advanced-freehand-drawing-techniques--mobile-15602
+    dispatch_async(drawingQueue, ^{
+        UIGraphicsBeginImageContext(self.insideView.frame.size);
+        [self.tempDrawImage.image drawInRect:CGRectMake(0, 0, self.insideView.frame.size.width, self.insideView.frame.size.height)];
+        
+        DLog(@"width:%f", self.insideView.frame.size.width);
+        DLog(@"height:%f", self.insideView.frame.size.height);
+        
+        
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        
+        [self.arrayOfLines drawAllLinesInContext:context];
+        
+        CGContextSetLineCap(context, kCGLineCapRound);
+        CGContextSetLineWidth(context, [self getStrokeSize] );
+        CGContextSetRGBStrokeColor(context, self.red, self.green, self.blue, 1.0);
+        
+        
+        CGContextSetBlendMode(context, kCGBlendModeNormal);
+        
+        [self.arrayOfLines drawAllLinesInContext:context];
+        
+        UIImage *tmpImage =UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        self.tempDrawImage.image = tmpImage;
+        [self.tempDrawImage setAlpha:[self getAlpha]];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tempDrawImage setNeedsDisplay];
+        });
+    });
 
-    CGContextRef context = UIGraphicsGetCurrentContext();
-
-    [self.arrayOfLines drawAllLinesInContext:context];
     
-    CGContextSetLineCap(context, kCGLineCapRound);
-    CGContextSetLineWidth(context, [self getStrokeSize] );
-    CGContextSetRGBStrokeColor(context, self.red, self.green, self.blue, 1.0);
-    
-
-    CGContextSetBlendMode(context, kCGBlendModeNormal);
-
-    [self.arrayOfLines drawAllLinesInContext:context];
-
-    self.tempDrawImage.image = UIGraphicsGetImageFromCurrentImageContext();
-    [self.tempDrawImage setAlpha:[self getAlpha]];
-    UIGraphicsEndImageContext();
     
     [self.arrayOfLines currentBecomeFirst];
 }
+
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
@@ -369,8 +396,9 @@
         // on les ignore
         UITouch *touch = [touches anyObject];
         CGPoint touchLocation = [touch locationInView:self.view];
-        if (! CGRectContainsPoint(self.insideView.frame, touchLocation)) {
-            NSLog(@"Tapped not in image view");
+        if (! CGRectContainsPoint(self.insideView.frame, touchLocation))
+        {
+            DLog(@"Tapped not in image view");
             return;
         }
     }
@@ -381,7 +409,7 @@
         // cas du point unique !
         if ( !mouseSwiped )
         {
-            [arrayOfLines addOnePoint];
+            [arrayOfLines addOnePoint:allTouches[0]];
         }
     }
 
@@ -390,68 +418,80 @@
     {
         UIGraphicsBeginImageContext(self.insideView.frame.size);
         [self.tempDrawImage.image drawInRect:CGRectMake(0, 0, self.insideView.frame.size.width, self.insideView.frame.size.height)];
-  
-        CGContextRef context = UIGraphicsGetCurrentContext();
-
-        CGContextSetLineCap(context, kCGLineCapRound);
-        CGContextSetLineWidth(context, [self getStrokeSize] );
-
-        if (self.isRubberMode)
+        // ajout OGU - cf http://stackoverflow.com/questions/19167732/coregraphics-drawing-causes-memory-warnings-crash-on-ios-7
+        @autoreleasepool
         {
-            CGContextSetBlendMode(context, kCGBlendModeClear);
+            CGContextRef context = UIGraphicsGetCurrentContext();
+            
+            CGContextSetLineCap(context, kCGLineCapRound);
+            CGContextSetLineWidth(context, [self getStrokeSize] );
+
+            if (self.isRubberMode)
+            {
+                CGContextSetBlendMode(context, kCGBlendModeClear);
+            }
+            else
+            {
+                CGContextSetBlendMode(context, kCGBlendModeNormal);
+            }
+
+            CGContextSetRGBStrokeColor(context, self.red, self.green, self.blue, [self getAlpha]);
+        
+            [self.arrayOfLines drawAllLinesInContext:context];
+        
+            CGContextFlush(context);
+        
+            self.tempDrawImage.image = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
         }
+    }
+    
+    // ajout OGU - cf http://stackoverflow.com/questions/19167732/coregraphics-drawing-causes-memory-warnings-crash-on-ios-7
+    @autoreleasepool
+    {
+        UIGraphicsBeginImageContext(self.insideView.frame.size);
+        //[self.mainImage.image drawInRect:CGRectMake(0, 0, self.insideView.frame.size.width, self.insideView.frame.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
+        [self.tempDrawImage.image drawInRect:CGRectMake(0, 0, self.insideView.frame.size.width, self.insideView.frame.size.height) blendMode:kCGBlendModeNormal alpha:[self getAlpha]];
+
+
+
+        // Stockage pour undo....
+        if ( self.mainImage.image )
+            [self pushImage:self.mainImage.image];
         else
         {
-            CGContextSetBlendMode(context, kCGBlendModeNormal);
+            UIImage *tmpImage = [[UIImage alloc] init];
+            [self pushImage:tmpImage];
         }
 
-        CGContextSetRGBStrokeColor(context, self.red, self.green, self.blue, [self getAlpha]);
         
-        [self.arrayOfLines drawAllLinesInContext:context];
-        
-        CGContextFlush(context);
-        
-        self.tempDrawImage.image = UIGraphicsGetImageFromCurrentImageContext();
+        self.mainImage.image = UIGraphicsGetImageFromCurrentImageContext();
+    
+        self.tempDrawImage.image = nil;
         UIGraphicsEndImageContext();
     }
     
-    UIGraphicsBeginImageContext(self.insideView.frame.size);
-    [self.mainImage.image drawInRect:CGRectMake(0, 0, self.insideView.frame.size.width, self.insideView.frame.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
-    [self.tempDrawImage.image drawInRect:CGRectMake(0, 0, self.insideView.frame.size.width, self.insideView.frame.size.height) blendMode:kCGBlendModeNormal alpha:[self getAlpha]];
-
-    
-    
-    // Stockage pour undo....
-    if ( self.mainImage.image )
-        [self pushImage:self.mainImage.image];
-    else
-    {
-        UIImage *tmpImage = [[UIImage alloc] init];
-        [self pushImage:tmpImage];
-    }
-    
-    self.mainImage.image = UIGraphicsGetImageFromCurrentImageContext();
-    
-    self.tempDrawImage.image = nil;
-    UIGraphicsEndImageContext();
-    
     self.undoButton.enabled = [self canUndo];
 }
+#endif
 
-- (void)longTapOnPenButtonDetected:(UITapGestureRecognizer *)longRecognizer
+
+- (void)longTapOnPenButtonDetected:(UITapGestureRecognizer *)recognizer
 {
+    if ( recognizer.state == UIGestureRecognizerStateCancelled || isRubberMode)
+        return;
+    
     @try {
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         {
-            [self closeAllPopover];
+           // [self closeAllPopover];
             
             // iPad View
             if (self.colorPicker == nil)
             {
                 PresetColorPickerController *tmpColorPicker = [[PresetColorPickerController alloc] init];
                 self.colorPicker = tmpColorPicker;
-                
-                [tmpColorPicker release];
+               // [tmpColorPicker release];
                 
                 self.colorPicker.delegate = self;
                 self.colorPickerPopover = [[[UIPopoverController alloc] initWithContentViewController:colorPicker] autorelease];
@@ -471,12 +511,13 @@
                 self.colorPickerPopover=nil;
             }
             
-            
             [self presentViewController:self.colorPicker animated:YES completion:nil];
+            
         }
     }
-    @catch (NSException *exception) {
-        NSLog(@"%@", exception.reason);
+    @catch (NSException *exception)
+    {
+        DLog(@"%@", exception.reason);
     }
 }
 
@@ -488,9 +529,9 @@
 
 - (IBAction)undoButtonTapped:(id)sender
 {
-    DLog("init");
-    self.mainImage.image = [self popImage];
+    self.insideView.incrementalImage = [self popImage];
     self.undoButton.enabled = [self canUndo];
+    [self.insideView setNeedsDisplay];
 }
 
 
@@ -502,8 +543,6 @@
     self.isRubberMode = !self.isRubberMode;
     self.rubberButton.selected = self.isRubberMode;
  
-    //self.colorButton.enabled = !self.isRubberMode;
-    
     if ( isRubberMode)
     {
         if ( self.imageStuff!= nil && self.imageStuff.backgroundColor != nil )
@@ -524,7 +563,6 @@
 #pragma mark - preventing simultaneous popups... HandleOtherPopupsDelegate... 
 - (void) enableAllOtherPopups:(Boolean) enable
 {
-    // self.colorButton.enabled = enable;
     self.favoritesButton.enabled = enable;
 }
 
@@ -867,9 +905,7 @@
             
     // reactive le crayon
     self.isRubberMode=FALSE;
-      
     self.rubberButton.selected=FALSE;
-    //self.colorButton.enabled = TRUE;
 }
 
 
@@ -898,6 +934,7 @@
     if([title isEqualToString:NSLocalizedString(@"OK",nil)])
     {
         [self displayNewImage:nil];
+
     }
 }
 
@@ -905,24 +942,26 @@
 #pragma mark - favorites 
 - (IBAction) addToFavorites:(id)sender
 {
-    self.imageStuff.isFavorite=TRUE;
-    self.imageStuff.imageFileName=nil; // on force la sauvegarde d'un nouveau fichier
-    [self saveCurrentImageStuff];
+    @try
+    {
+        self.imageStuff.isFavorite=TRUE;
+        self.imageStuff.imageFileName=nil; // on force la sauvegarde d'un nouveau fichier
+        [self saveCurrentImageStuff];
+    }
+    @catch (NSException *exception)
+    {
+        DLog(@"%@", exception.reason);
+    }
 }
 
 
 
 #pragma mark - colorPicker
 
-
-
 - (void)colorNameSelected:(NSString *)colorName
 {
     UIColor *color = [PresetColorPickerController colorFromName:colorName];
  
-    // change color of button
-    //[self.colorButton setTintColor:color];
-    
     // MAJ des red/green...
     [self updateColorComponentsWithName:colorName];
     self.currentColor = color;

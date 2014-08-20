@@ -16,7 +16,6 @@
 + (NSArray *) getArrayOfFilesInDirectory:(NSString *) directory;
 + (NSMutableArray *) getArrayOfImagesStuffInDirectory:(NSString *) directory;
 
-
 + (NSData *) LoadFileWithDirectory: (NSString*) directory andFileName:(NSString *) fileName;
 
 + (BOOL) saveFileWithData: (NSData *) file andDirectory:(NSString *) directory andFileName: (NSString *) fileName;

@@ -14,21 +14,23 @@
     CGPoint previousTouches1[MAXTOUCHES - 1];
     CGPoint previousTouches2[MAXTOUCHES - 1];
     CGPoint currentTouches[MAXTOUCHES - 1];
+    CGPoint allTouches[MAXTOUCHES - 1][100];
+    
+    
 }
 
 @property (nonatomic, assign) int nbFirstTouches;
 @property (nonatomic, assign) int nbCurrentTouches;
 
+@property (nonatomic, assign) int nbAllTouches;
+
 
 
 - (void) resetTouches;
 - (void) currentBecomeFirst;
-- (void) addOnePoint;
 
-- (void) addWithOneTouch: (UITouch *) touch andView: (UIView *) view andIsFirstTouch: (BOOL) bFirst;
-- (void) addWithSetOfTouches: (NSSet *) allTouches andView: (UIView *) view andIsFirstTouch: (BOOL) bFirst;
+- (void) addWithSetOfTouches: (NSSet *) allTouches andView: (UIView *) view andIsFirstTouch: (BOOL) bFirst andIsMultiTouchEnabled:(BOOL) bMultiTouch;
 
-- (CGRect) currentRect: (float) strokeSize;
 - (void) drawAllLinesInContext: (CGContextRef) context;
 
 @end

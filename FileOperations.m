@@ -89,7 +89,13 @@
 
         [res addObject:stuff];
     }
-    return res;
+    
+    // sort it based on timestamp...
+    NSSortDescriptor *sortDescriptor;
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp"
+                                                 ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    return [[res sortedArrayUsingDescriptors:sortDescriptors] mutableCopy];
 }
 
 + (NSData *) LoadFileWithDirectory: (NSString*) directory andFileName:(NSString *) fileName

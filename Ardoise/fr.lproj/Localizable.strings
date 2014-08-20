@@ -52,7 +52,7 @@
 "You can't send a tweet right now, make sure your device has an internet connection and you have at least one Twitter account setup" = "You can't send a tweet right now, make sure your device has an internet connection and you have at least one Twitter account setup";
 
 // todo list
-"Save to Camera Roll" = "sauvegarder dans l'album photo";
+"Save to Camera Roll" = "Album photo";
 "Image could not be saved.Please try again" = "L'image n'a pu être sauvegardée. Merci d'essayer à nouveau";
 "Image was successfully saved in photoalbum" = "L'image a pu être sauvegardée dans l'album photo";
 "Success"="Succès";

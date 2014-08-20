@@ -35,6 +35,8 @@
 		36C741E416458EBB00D95C52 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C741E316458EBB00D95C52 /* CustomCell.m */; };
 		36C741E61645901F00D95C52 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36C741E51645901F00D95C52 /* CustomCell.xib */; };
 		36C741E81645906C00D95C52 /* CustomCell-others.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36C741E71645906C00D95C52 /* CustomCell-others.xib */; };
+		36EB083F1992C84D00772154 /* MCOView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EB083E1992C84D00772154 /* MCOView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		36EB08421994115600772154 /* UIView+FindUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EB08411994115600772154 /* UIView+FindUIViewController.m */; };
 		F20F89A214BB8ADD00897666 /* PresetColorPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20F899F14BB8ADD00897666 /* PresetColorPickerController.m */; };
 		F2116B5014BCE3D4008DC554 /* FileOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = F2116B4F14BCE3D4008DC554 /* FileOperations.m */; };
 		F2116B5514BCE5F7008DC554 /* RecentImagesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2116B5414BCE5F7008DC554 /* RecentImagesController.m */; };
@@ -105,6 +107,10 @@
 		36C741E316458EBB00D95C52 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
 		36C741E51645901F00D95C52 /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		36C741E71645906C00D95C52 /* CustomCell-others.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CustomCell-others.xib"; sourceTree = "<group>"; };
+		36EB083D1992C84D00772154 /* MCOView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCOView.h; sourceTree = "<group>"; };
+		36EB083E1992C84D00772154 /* MCOView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCOView.m; sourceTree = "<group>"; };
+		36EB08401994115600772154 /* UIView+FindUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FindUIViewController.h"; sourceTree = "<group>"; };
+		36EB08411994115600772154 /* UIView+FindUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FindUIViewController.m"; sourceTree = "<group>"; };
 		F20F899E14BB8ADD00897666 /* PresetColorPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresetColorPickerController.h; sourceTree = "<group>"; };
 		F20F899F14BB8ADD00897666 /* PresetColorPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresetColorPickerController.m; sourceTree = "<group>"; };
 		F2116B4E14BCE3D4008DC554 /* FileOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileOperations.h; sourceTree = SOURCE_ROOT; };
@@ -281,6 +287,8 @@
 		F2BC4FB014B0A82C00BDE9FD /* Ardoise */ = {
 			isa = PBXGroup;
 			children = (
+				36EB083D1992C84D00772154 /* MCOView.h */,
+				36EB083E1992C84D00772154 /* MCOView.m */,
 				F2F300CB14DD32D500726E22 /* Helpers.h */,
 				F2F300CC14DD32D500726E22 /* Helpers.m */,
 				F2749DE514B88C2100DF2C3E /* UIView+FixedApi.h */,
@@ -297,6 +305,8 @@
 				F2BC4FBA14B0A82C00BDE9FD /* MCOAppDelegate.m */,
 				F2BC4FB114B0A82C00BDE9FD /* Supporting Files */,
 				36A2B9A414C617D800A8DAA7 /* Includes.h */,
+				36EB08401994115600772154 /* UIView+FindUIViewController.h */,
+				36EB08411994115600772154 /* UIView+FindUIViewController.m */,
 			);
 			path = Ardoise;
 			sourceTree = "<group>";
@@ -530,6 +540,7 @@
 				F2BC4FBB14B0A82C00BDE9FD /* MCOAppDelegate.m in Sources */,
 				F2BC4FCB14B0AD7E00BDE9FD /* ArdoiseViewController.m in Sources */,
 				F20F89A214BB8ADD00897666 /* PresetColorPickerController.m in Sources */,
+				36EB08421994115600772154 /* UIView+FindUIViewController.m in Sources */,
 				F2116B5014BCE3D4008DC554 /* FileOperations.m in Sources */,
 				F2116B5514BCE5F7008DC554 /* RecentImagesController.m in Sources */,
 				F21A7B1414BE2AD800E608C8 /* ImageStuff.m in Sources */,
@@ -552,6 +563,7 @@
 				F2F300C014DD2DA100726E22 /* IASKSwitch.m in Sources */,
 				F2F300C114DD2DA100726E22 /* IASKTextField.m in Sources */,
 				F2F300CD14DD32D500726E22 /* Helpers.m in Sources */,
+				36EB083F1992C84D00772154 /* MCOView.m in Sources */,
 				36C741E416458EBB00D95C52 /* CustomCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

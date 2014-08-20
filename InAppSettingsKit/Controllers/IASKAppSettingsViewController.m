@@ -620,7 +620,11 @@ CGRect IASKCGRectSwap(CGRect rect);
         [targetViewController setCurrentSpecifier:specifier];
         targetViewController.settingsReader = self.settingsReader;
         targetViewController.settingsStore = self.settingsStore;
-		targetViewController.view.tintColor = self.view.tintColor;
+        // MODIF OGU
+        if ([UIWindow instancesRespondToSelector:@selector(tintColor)])
+        {
+            targetViewController.view.tintColor = self.view.tintColor;
+        }
         _currentChildViewController = targetViewController;
         [[self navigationController] pushViewController:targetViewController animated:YES];
         

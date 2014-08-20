@@ -15,7 +15,7 @@
 #import "RecentImagesController.h"
 #import "SettingsNavigationViewController.h"
 #import "IASKAppSettingsViewController.h"
-
+#import "MCOView.h"
 
 
 @class ArdoiseView;
@@ -28,7 +28,7 @@
 @interface ArdoiseViewController : UIViewController <PresetColorPickerDelegate,RecentImagesDelegate,UIPopoverControllerDelegate, UIActionSheetDelegate,MFMailComposeViewControllerDelegate,  UIAlertViewDelegate, UIGestureRecognizerDelegate>
 {
     CGPoint lastPoint;
-    BOOL mouseSwiped;
+    BOOL    mouseSwiped;
 }
 
 // undo data
@@ -69,10 +69,10 @@
 
 - (UIImage *) getUpdatedImage;
 
-@property (retain, nonatomic) IBOutlet UIImageView *mainImage;
-@property (retain, nonatomic) IBOutlet UIImageView *tempDrawImage;
+//@property (retain, nonatomic) IBOutlet UIImageView *mainImage;
+//@property (retain, nonatomic) IBOutlet UIImageView *tempDrawImage;
 
-@property (nonatomic, retain) IBOutlet UIView           *insideView;
+@property (nonatomic, retain) IBOutlet MCOView     *insideView;
 @property (nonatomic, retain) IBOutlet UIToolbar        *ardoiseToolbar;
 
 // RecentImagesPicker
@@ -82,7 +82,7 @@
 @property (nonatomic, retain) UITabBarController *myTabBarControllerinModalViewController;
 
 @property(nonatomic, retain) IBOutlet UIButton          * rubberButton;
-@property(nonatomic, retain) IBOutlet UIBarButtonItem          * rubberBarButton;
+@property(nonatomic, retain) IBOutlet UIBarButtonItem   * rubberBarButton;
 @property(nonatomic, retain) IBOutlet UIBarButtonItem   * shareButton;
 @property(nonatomic, retain) IBOutlet UIBarButtonItem   * favoritesButton;
 @property(nonatomic, retain) IBOutlet UIBarButtonItem   * undoButton;
